@@ -23,11 +23,11 @@ body{
 .boton{
     background-color: lightgray;
     color: black;
-    padding: 15px 32px;
+    padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 15px;
     border-radius: 8px; 
     border: 1px solid rgb(78, 78, 78) ;
     transition-duration: 0.2s;  
