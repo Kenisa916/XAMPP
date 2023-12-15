@@ -1,0 +1,45 @@
+body{
+    margin:0;
+}
+
+#cabecera{
+    padding: 1%;
+    margin: 2% 0 0;
+}
+
+#logo{
+    display: inline-block;
+}
+
+#espacio{
+    display: inline-block;
+    margin:0 19% ;
+}
+
+#sesion{
+    display: inline-block;
+}
+
+.boton{
+    background-color: lightgray;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px; 
+    border: 1px solid rgb(78, 78, 78) ;
+    transition-duration: 0.2s;  
+}
+
+.boton:hover{
+    background-color: grey;
+    color: black;
+}
+
+#borderBottom{
+    border-bottom: 1px inset black;
+    margin: 0 5%;
+}
+
