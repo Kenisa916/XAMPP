@@ -1,0 +1,64 @@
+<div class="cont-art">
+
+                <div class="articulos">
+                    <div class="articulo">
+                        <div class="ctn-img">
+                            <img src="Articulos/Prote.jpeg" alt="">
+                        </div>
+                        <h2>Proteína - 1Kg</h2>
+                        <span>59,99€</span>
+                        <ul class="art-tag">
+                            <li>Prote</li>
+                            <li>Suplementos</li>
+                        </ul>
+                    </div>
+                    <div class="articulo">
+                        <div class="ctn-img">
+                            <img src="Articulos/Prote.jpeg" alt="">
+                        </div>
+                        <h2>Proteína - 500g</h2>
+                        <span>29,99€</span>
+                        <ul class="art-tag">
+                            <li>Prote</li>
+                            <li>Suplementos</li>
+                        </ul>
+                    </div>
+                    <div class="articulo">
+                        <div class="ctn-img">
+                            <img src="Articulos/shaker.jpeg" alt="">
+                        </div>
+                        <h2>Shaker - 500ml</h2>
+                        <span>3,99€</span>
+                        <ul class="art-tag">
+                            <li>Complementos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+/*Articulos*/
+
+.cont-art{
+    width: 70%;
+    height: 600px;
+    border-style: solid ;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.articulos{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.articulos .articulo{
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
