@@ -2,14 +2,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="estilos.css">
         <title>MuscleBoost Palace</title>
     </head>
     <body>
 
-        <div id="cabecera">
+        <div class="cabecera" id="myHeader">
             <div id="divlogo">
-                <a href="index.html"><img id="logo" src="MBP.png" alt="Logo Tienda"></a>
+                <a href="index.html"><img src="MBP.png" alt="Logo Tienda"></a>
             </div>
             <div id="sesion">
                 <a class="boton" href="login.html">Iniciar Sesión</a>
@@ -22,51 +23,58 @@
 
         <div class="contenido">
             <div class="cont-cat">
-                <div class="categorias">
-                    <input type="radio" id="TODOS" name="categorias" value="TODOS">
-                </div>
+                <h3 class="titCat">Categorias</h2>
+                <button class="botCat active" onclick="filterSelection('todo')">Mostrar todo</button>
+                <button class="botCat" onclick="filterSelection('nutri')">Nutrición Deportiva</button>
+                <button class="botCat" onclick="filterSelection('alim')">Alimentación</button>
+                <button class="botCat" onclick="filterSelection('acce')">Accesorios</button>
             </div>
 
 
             <div class="cont-art">
-                <div class="articulo">
+                <div class="articulo nutri">
                     <div class="ctn-img">
                         <img src="Articulos/Prote.jpeg" alt="">
                     </div>
                     <h2>Proteína - 1Kg</h2>
                     <span>59,99€</span>
-                    <ul class="art-tag">
-                        <li>Prote</li>
-                        <li>Suplementos</li>
-                    </ul>
                 </div>
-                <div class="articulo">
+                <div class="articulo nutri">
                     <div class="ctn-img">
                         <img src="Articulos/Prote.jpeg" alt="">
                     </div>
                     <h2>Proteína - 500g</h2>
                     <span>29,99€</span>
-                    <ul class="art-tag">
-                        <li>Prote</li>
-                        <li>Suplementos</li>
-                    </ul>
-                </div>
-                <div class="articulo">
+                <div class="articulo acce">
                     <div class="ctn-img">
                         <img src="Articulos/shaker.jpeg" alt="">
                     </div>
                     <h2>Shaker - 500ml</h2>
                     <span>3,99€</span>
-                    <ul class="art-tag">
-                        <li>Complementos</li>
-                    </ul>
                 </div>
             </div>
  
 
         </div>
 
-        
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+            
+            function myFunction() {
+              if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+              } else {
+                header.classList.remove("sticky");
+              }
+            }
+        </script> 
+
+
+
 
     </body>
 </html> 
+
