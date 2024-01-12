@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 // Crear la base de datos
-$sql = "CREATE DATABASE IF NOT EXISTS mi_base_de_datos";
+$sql = "CREATE DATABASE IF NOT EXISTS MuscleBoost";
 if ($conn->query($sql) === TRUE) {
     echo "";
 } else {
