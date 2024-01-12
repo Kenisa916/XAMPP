@@ -40,8 +40,10 @@
                 </select>
                 <label for="cantidad">Cantidad:</label>
                 <input type="number" id="quantity" name="quantity" min="1">
+                <button onclick="eliminar(this)">Eliminar</button>
                 <br><br>
             </form>
+            
 
 
 
@@ -68,7 +70,12 @@
                 const node = document.getElementById("compra");
                 const clone = node.cloneNode(true);
                 document.getElementById("contenido").appendChild(clone);
-            }   
+            }
+            
+            function eliminar(button){
+                var form = button.closest("form");
+                form.parentNode.removeChild(form);
+            }
 
         </script> 
 
