@@ -1,3 +1,28 @@
+<?php
+$servername = "localhost";
+$username = "tu_usuario";
+$password = "tu_contraseña";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("La conexión falló: " . $conn->connect_error);
+}
+
+// Crear la base de datos
+$sql = "CREATE DATABASE IF NOT EXISTS mi_base_de_datos";
+if ($conn->query($sql) === TRUE) {
+    echo "Base de datos creada exitosamente";
+} else {
+    echo "Error al crear la base de datos: " . $conn->error;
+}
+
+// Cerrar la conexión
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
