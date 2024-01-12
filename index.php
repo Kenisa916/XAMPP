@@ -1,7 +1,3 @@
-<?php
-include('scripts.php');
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -43,9 +39,7 @@ include('scripts.php');
                         <button type="button" onclick="document.getElementById('ini').style.display='none'" class="cancelbtn">Cancel</button>
                       </div>
                     </form>
-                </div>
-
-                
+                </div>     
                 <button class="boton" onclick="document.getElementById('regi').style.display='block'">Registrarse</button>
                 <div id="regi" class="modal">
                     <span onclick="document.getElementById('regi').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -214,5 +208,10 @@ include('scripts.php');
 
 
     </body>
+  
+    <?php
+        include ("scripts.php");
+    ?>
+
 </html> 
 

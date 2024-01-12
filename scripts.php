@@ -7,22 +7,22 @@ $password = "";
 $conn = new mysqli($servername, $username, $password);
 
 // Verificar la conexión
-if ($conn->connect_error) {
-    die("La conexión falló: " . $conn->connect_error);
+if (!$conn) {
+    die("La conexión falló: " . mysqli_connect_error());
 }
 
 // Crear la base de datos
 $sqlCrearBD = "CREATE DATABASE IF NOT EXISTS MuscleBoost";
-if ($conn->query($sqlCrearBD) === TRUE) {
-    echo "";
+if (mysqli_query($conn, $sqlCrearBD)) {
+    echo "Base de datos creada exitosamente";
 } else {
-    echo "";
+    echo "Error al crear la base de datos: " . mysqli_error($conn);
 }
 
 //Creacion tablas en la base de datos
 //Seleccionamos la BD
 
-$conn->select_db($dbname);
+mysqli_select_db($conn, "MuscleBoost");
 
 //Creamos las tablas
 $sqlCrearTablaUsuarios = "CREATE TABLE IF NOT EXISTS Usuarios (
@@ -30,9 +30,27 @@ $sqlCrearTablaUsuarios = "CREATE TABLE IF NOT EXISTS Usuarios (
     apellidos varchar(50) not null,
     correo varchar(100) primary key,
     contrasena varchar(20) not null
-
 )";
 
+if (mysqli_query($conn, $sqlCrearTablaUsuarios)) {
+    echo "Tabla 'Usuarios' creada exitosamente";
+} else {
+    echo "Error al crear la tabla: " . mysqli_error($conn);
+}
+
+$sqlCrearTablaCompras = "CREATE TABLE IF NOT EXISTS Compras (
+    id_compra int primary key,
+    correo varchar(100) not null,
+    constraint fk_compra_usuarios foreign key (correo) references Usuarios(correo)
+)";
+
+if (mysqli_query($conn, $sqlCrearTablaCompras)) {
+    echo "Tabla 'Compras' creada exitosamente";
+} else {
+    echo "Error al crear la tabla: " . mysqli_error($conn);
+}
+
+
 // Cerrar la conexión
-$conn->close();
+mysqli_close($conn);
 ?>
