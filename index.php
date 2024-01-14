@@ -15,11 +15,10 @@
             <div id="sesion">
                 <button class="boton" onclick="document.getElementById('ini').style.display='block'">Iniciar Sesión</button>
                 <div id="ini" class="modal">
-                    <span onclick="document.getElementById('ini').style.display='none'"
-                  class="close" title="Cerrar">&times;</span>
+                    <span onclick="document.getElementById('ini').style.display='none'" class="close" title="Cancelar">&times;</span>
                   
                     <!-- Modal Content -->
-                    <form class="modal-content animate" action="/action_page.php">
+                    <form class="modal-content animate" action="inises.php">
                   
                       <div class="container">
                         <h2>Iniciar Sesión</h2>
@@ -34,12 +33,15 @@
                           <input type="checkbox" checked="checked" name="remember"> Recuérdame
                         </label>
                       </div>
+
                       <br>
                       <div class="container">
                         <button type="button" onclick="document.getElementById('ini').style.display='none'" class="cancelbtn">Cancel</button>
                       </div>
                     </form>
-                </div>     
+                </div>    
+                
+                
                 <button class="boton" onclick="document.getElementById('regi').style.display='block'">Registrarse</button>
                 <div id="regi" class="modal">
                     <span onclick="document.getElementById('regi').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -58,7 +60,7 @@
                         <input type="text" placeholder="Repeat Password" name="psw-repeat" required>
                         <br>    <br>          
                         <div class="clearfix">
-                          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                          <button type="button" onclick="document.getElementById('regi').style.display='none'" class="cancelbtn">Cancel</button>
                           <button type="submit" class="signupbtn">Sign Up</button>
                         </div>
                       </div>
@@ -194,15 +196,23 @@
             var modal = document.getElementById('ini');
 
             //Modal para registro
-            var modal = document.getElementById('regi');
+            var modal2 = document.getElementById('regi');
+
 
             // When the user clicks anywhere outside of the modal, close it
+            
+
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
+                else if (event.target == modal2) {
+                    modal2.style.display = "none";
+                }
             }
-        </script> 
+
+           
+        </script>
 
 
 
