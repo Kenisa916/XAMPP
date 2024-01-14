@@ -9,7 +9,7 @@
 
         <div class="cabecera" id="myHeader">
             <div id="divlogo">
-                <a href="index.html"><img src="MBP.png" alt="Logo Tienda"></a>
+                <a href="index.php"><img src="MBP.png" alt="Logo Tienda"></a>
             </div>
             
             <div id="sesion">
@@ -22,11 +22,13 @@
                   
                       <div class="container">
                         <h2>Iniciar Sesión</h2>
-                        <label for="correo"><b>Correo</b></label>
+                        <label for="correo"><b>Correo</b></label><br>
                         <input type="email" placeholder="Correo" name="correo" required>
                         <br><br>
-                        <label for="contra"><b>Contraseña</b></label>
-                        <input type="password" placeholder="Contraseña" name="contra" required>
+                        <label for="contra"><b>Contraseña</b></label><br>
+                        <input type="password" placeholder="Contraseña" name="contra" id="contra" required>
+                        <br><br>
+                        <input type="checkbox" onclick="myFunction()">Ver contraseña
                         <br><br>
                         <button type="submit">Login</button>
                         <label>
@@ -45,20 +47,27 @@
                 <button class="boton" onclick="document.getElementById('regi').style.display='block'">Registrarse</button>
                 <div id="regi" class="modal">
                     <span onclick="document.getElementById('regi').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <form class="modal-content" action="/action_page.php">
+                    <form class="modal-content" action="regi.php" method="post">
                       <div class="container">
                         <h1>Registro</h1>
                         <p>Rellene los campos para crear una cuenta</p>
                         <hr>
-                        <label for="nombre"><b>Nombre</b></label>
+                        <label><b>Nombre</b></label><br>
                         <input type="text" placeholder="Tu nombre" name="nombre" required>
                         <br><br>
-                        <label for="ape"><b>Apellidos</b></label>
-                        <input type="password" placeholder="Tus apellidos" name="psw" required>
+                        <label><b>Apellidos</b></label><br>
+                        <input type="text" placeholder="Tus apellidos" name="ape" required>
                         <br><br>
-                        <label for="psw-repeat"><b>Correo</b></label>
-                        <input type="text" placeholder="Repeat Password" name="psw-repeat" required>
-                        <br>    <br>          
+                        <label><b>Correo</b></label><br>
+                        <input type="text" placeholder="Tu correo" name="correo" required>
+                        <br><br>      
+                        <label><b>Contraseña</b></label>
+                        <br><br>
+                        <input type="password" placeholder="Contraseña" name="contra" id="contra" required>
+                        <br>
+                        <input type="checkbox" onclick="myFunction()">Ver contraseña
+
+                        <br><br>      
                         <div class="clearfix">
                           <button type="button" onclick="document.getElementById('regi').style.display='none'" class="cancelbtn">Cancel</button>
                           <button type="submit" class="signupbtn">Sign Up</button>
@@ -208,6 +217,16 @@
                 }
                 else if (event.target == modal2) {
                     modal2.style.display = "none";
+                }
+            }
+
+            //funcion para alternar visibilidad de la contraseña
+            function myFunction() {
+                var x = document.getElementById("contra");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
                 }
             }
 
