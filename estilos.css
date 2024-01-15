@@ -87,7 +87,7 @@ img {
 /*pop up inicio sesion y registro*/
 
  /* The Modal (background) */
- .modal {
+.modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -101,19 +101,20 @@ img {
     padding-top: 8%;
 }
   
-  /* Modal Content/Box */
-  .modal-content {
+/* Modal Content/Box */
+.modal-content {
     background-color: #fefefe;
     margin: 5px auto; /* 15% from the top and centered */
     border: 1px solid;
-    width: 18%; /* Could be more or less, depending on screen size */
+    width: 17%; /* Could be more or less, depending on screen size */
     padding: 2%;
+    padding-top: 0px;
     border-radius: 8px;
     overflow:auto;
-  }
-  
-  /* The Close Button */
-  .close {
+}
+
+/* The Close Button */
+.close {
     /* Position it in the top right corner outside of the modal */
     position: absolute;
     right: 25px;
@@ -121,31 +122,31 @@ img {
     color: #000;
     font-size: 35px;
     font-weight: bold;
-  }
-  
-  /* Close button on hover */
-  .close:hover,
-  .close:focus {
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
     cursor: pointer;
-  }
-  
-  /* Add Zoom Animation */
-  .animate {
+}
+
+/* Add Zoom Animation */
+.animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s
-  }
-  
-  @-webkit-keyframes animatezoom {
+}
+
+@-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)}
     to {-webkit-transform: scale(1)}
-  }
-  
-  @keyframes animatezoom {
+}
+
+@keyframes animatezoom {
     from {transform: scale(0)}
     to {transform: scale(1)}
-  } 
+} 
 
-
+.hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }
 
 /*Contenido de la página, debajo de la cabecera*/
 

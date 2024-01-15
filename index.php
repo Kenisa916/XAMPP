@@ -18,7 +18,7 @@
                     <span onclick="document.getElementById('ini').style.display='none'" class="close" title="Cancelar">&times;</span>
                   
                     <!-- Modal Content -->
-                    <form class="modal-content animate" action="inises.php">
+                    <form class="modal-content animate" action="index.php" style="padding-right: 0px;">
                   
                       <div class="container">
                         <h2>Iniciar Sesión</h2>
@@ -30,51 +30,54 @@
                         <br><br>
                         <input type="checkbox" onclick="myFunction()">Ver contraseña
                         <br><br>
-                        <button type="submit">Login</button>
-                        <label>
-                          <input type="checkbox" checked="checked" name="remember"> Recuérdame
-                        </label>
-                      </div>
-
-                      <br>
-                      <div class="container">
-                        <button type="button" onclick="document.getElementById('ini').style.display='none'" class="cancelbtn">Cancel</button>
+                        <button type="submit">Confirmar</button>
+                      
+                        <button type="button" onclick="document.getElementById('ini').style.display='none'" class="cancelbtn">Cancelar</button>
                       </div>
                     </form>
                 </div>    
-                
+
+                <div id="bienve" style="display: none;">
+                    <p>Bienvenido <?php echo $_POST["nombre"]; ?></p>
+                    <button type="submit">Close</button>
+                </div>
                 
                 <button class="boton" onclick="document.getElementById('regi').style.display='block'">Registrarse</button>
                 <div id="regi" class="modal">
                     <span onclick="document.getElementById('regi').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <form class="modal-content" action="regi.php" method="post">
-                      <div class="container">
-                        <h1>Registro</h1>
-                        <p>Rellene los campos para crear una cuenta</p>
-                        <hr>
-                        <label><b>Nombre</b></label><br>
-                        <input type="text" placeholder="Tu nombre" name="nombre" required>
-                        <br><br>
-                        <label><b>Apellidos</b></label><br>
-                        <input type="text" placeholder="Tus apellidos" name="ape" required>
-                        <br><br>
-                        <label><b>Correo</b></label><br>
-                        <input type="text" placeholder="Tu correo" name="correo" required>
-                        <br><br>      
-                        <label><b>Contraseña</b></label>
-                        <br><br>
-                        <input type="password" placeholder="Contraseña" name="contra" id="contra" required>
-                        <br>
-                        <input type="checkbox" onclick="myFunction()">Ver contraseña
+                    <form class="modal-content" action="index.php" method="post">
+                        <div class="container">
+                            <h1>Registro</h1>
+                            <p>Rellene los campos para crear una cuenta</p>
+                            <hr>
+                            <label><b>Nombre</b></label><br>
+                            <input type="text" placeholder="Tu nombre" name="nombre" required>
+                            <br><br>
+                            <label><b>Apellidos</b></label><br>
+                            <input type="text" placeholder="Tus apellidos" name="ape" required>
+                            <br><br>
+                            <label><b>Correo</b></label><br>
+                            <input type="text" placeholder="Tu correo" name="correo" required>
+                            <br><br>      
+                            <label><b>Contraseña</b></label>
+                            <br>
+                            <input type="password" placeholder="Contraseña" name="contra" id="contra" required>
+                            <br><br>
+                            <input type="checkbox" onclick="myFunction()">Ver contraseña
 
-                        <br><br>      
-                        <div class="clearfix">
-                          <button type="button" onclick="document.getElementById('regi').style.display='none'" class="cancelbtn">Cancel</button>
-                          <button type="submit" class="signupbtn">Sign Up</button>
+                            <br><br>      
+                            <div class="clearfix">
+                                <button type="submit" class="signupbtn">Confirmar</button> 
+                                <button type="button" onclick="document.getElementById('regi').style.display='none'" class="cancelbtn">Cancelar</button>
+                            </div>
                         </div>
-                      </div>
                     </form>
-                  </div>
+                </div>
+
+                <div id="bienve" style="display: none;">
+                    <p>Bienvenido <?php echo $_POST["nombre"]; ?></p>
+                    <button type="submit">Close</button>
+                </div>
                   
             </div>
 
@@ -136,12 +139,12 @@
         <script>
             //Header fijo
 
-            window.onscroll = function() {myFunction()};
+            window.onscroll = function() {pegarHeader()};
             
             var header = document.getElementById("myHeader");
             var sticky = header.offsetTop;
             
-            function myFunction() {
+            function pegarHeader() {
               if (window.pageYOffset > sticky) {
                 header.classList.add("sticky");
               } else {
@@ -221,7 +224,7 @@
             }
 
             //funcion para alternar visibilidad de la contraseña
-            function myFunction() {
+            function verContra() {
                 var x = document.getElementById("contra");
                 if (x.type === "password") {
                     x.type = "text";
@@ -229,6 +232,18 @@
                     x.type = "password";
                 }
             }
+
+            //mensaje de bienvenida
+            var nextStep = document.querySelector('#nextStep');
+
+            nextStep.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Hide first view
+                document.getElementById('my_form').style.display = 'none';
+
+                // Show thank you message element
+                document.getElementById('thank_you').style.display = 'block';
+            });
 
            
         </script>
@@ -240,6 +255,7 @@
   
     <?php
         include ("scripts.php");
+        
     ?>
 
 </html> 
