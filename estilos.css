@@ -113,6 +113,13 @@ img {
     overflow:auto;
 }
 
+/*Mensaje de error en el registro*/
+.mensajeError{
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
 /* The Close Button */
 .close {
     /* Position it in the top right corner outside of the modal */

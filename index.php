@@ -20,15 +20,18 @@
                     <!-- Modal Content -->
                     <form class="modal-content animate" action="index.php" style="padding-right: 0px;">
                   
-                      <div class="container">
+                        <div class="container">
+                        
+
                         <h2>Iniciar Sesión</h2>
-                        <label for="correo"><b>Correo</b></label><br>
-                        <input type="email" placeholder="Correo" name="correo" required>
+                        <label for="correo1"><b>Correo</b></label><br> 
+                        <input type="email" placeholder="Correo" name="correo" id="correo1" required>
                         <br><br>
-                        <label for="contra"><b>Contraseña</b></label><br>
-                        <input type="password" placeholder="Contraseña" name="contra" id="contra" required>
+                        <label for="contra1"><b>Contraseña</b></label>
+                        <br>
+                        <input type="password" placeholder="Contraseña" name="contra" id="contra1" required>
                         <br><br>
-                        <input type="checkbox" onclick="myFunction()">Ver contraseña
+                        <input type="checkbox" onclick="verContraIni()">Ver contraseña
                         <br><br>
                         <button type="submit">Confirmar</button>
                       
@@ -37,47 +40,41 @@
                     </form>
                 </div>    
 
-                <div id="bienve" style="display: none;">
-                    <p>Bienvenido <?php echo $_POST["nombre"]; ?></p>
-                    <button type="submit">Close</button>
-                </div>
                 
                 <button class="boton" onclick="document.getElementById('regi').style.display='block'">Registrarse</button>
                 <div id="regi" class="modal">
                     <span onclick="document.getElementById('regi').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <form class="modal-content" action="index.php" method="post">
                         <div class="container">
+                            <div id="regiError" class="mensajeError"></div>
                             <h1>Registro</h1>
                             <p>Rellene los campos para crear una cuenta</p>
                             <hr>
-                            <label><b>Nombre</b></label><br>
-                            <input type="text" placeholder="Tu nombre" name="nombre" required>
+                            <label for="nombre"><b>Nombre</b></label><br>
+                            <input type="text" placeholder="Tu nombre" name="nombre" id="nombre" required>
                             <br><br>
-                            <label><b>Apellidos</b></label><br>
-                            <input type="text" placeholder="Tus apellidos" name="ape" required>
+                            <label for="ape"><b>Apellidos</b></label><br>
+                            <input type="text" placeholder="Tus apellidos" name="ape" id="ape" required>
                             <br><br>
-                            <label><b>Correo</b></label><br>
-                            <input type="text" placeholder="Tu correo" name="correo" required>
+                            <label for="correo2"><b>Correo</b></label><br>
+                            <input type="text" placeholder="Tu correo" name="correo" id="correo2" required>
                             <br><br>      
-                            <label><b>Contraseña</b></label>
+                            <label for="contra2"><b>Contraseña</b></label>
                             <br>
-                            <input type="password" placeholder="Contraseña" name="contra" id="contra" required>
+                            <input type="password" placeholder="Contraseña" name="contra" id="contra2" required>
                             <br><br>
-                            <input type="checkbox" onclick="myFunction()">Ver contraseña
+                            <input type="checkbox" onclick="verContraRegi()">Ver contraseña
 
                             <br><br>      
                             <div class="clearfix">
-                                <button type="submit" class="signupbtn">Confirmar</button> 
+                                <button type="submit" name="registro" class="signupbtn">Confirmar</button> 
                                 <button type="button" onclick="document.getElementById('regi').style.display='none'" class="cancelbtn">Cancelar</button>
                             </div>
+                            
                         </div>
                     </form>
                 </div>
 
-                <div id="bienve" style="display: none;">
-                    <p>Bienvenido <?php echo $_POST["nombre"]; ?></p>
-                    <button type="submit">Close</button>
-                </div>
                   
             </div>
 
@@ -124,12 +121,12 @@
                 <div class="articulo alim">
                     <img src="Articulos/barri.jpeg" alt="">
                     <h2>Barrita Energética 1</h2>
-                    <p>9,99€</p>
+                    <p>1,99€</p>
                 </div>
                 <div class="articulo alim">
                     <img src="Articulos/barri.jpeg" alt="">
                     <h2>Barrita Energética 2</h2>
-                    <p>8,99€</p>
+                    <p>2,99€</p>
                 </div>
             </div>
  
@@ -212,8 +209,6 @@
 
 
             // When the user clicks anywhere outside of the modal, close it
-            
-
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
@@ -223,9 +218,9 @@
                 }
             }
 
-            //funcion para alternar visibilidad de la contraseña
-            function verContra() {
-                var x = document.getElementById("contra");
+            //funcion para alternar visibilidad de la contraseña en el inicio de sesion
+            function verContraIni() {
+                var x = document.getElementById("contra1");
                 if (x.type === "password") {
                     x.type = "text";
                 } else {
@@ -233,18 +228,27 @@
                 }
             }
 
-            //mensaje de bienvenida
-            var nextStep = document.querySelector('#nextStep');
+            //funcion para alternar la visibilidad de la contraseña en el registro
+            function verContraRegi() {
+                var x = document.getElementById("contra2");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
 
-            nextStep.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Hide first view
-                document.getElementById('my_form').style.display = 'none';
+            //Funcion para que no se cierre el formulario de registro si el correo ya esta en la BD
+            if (registroCorrecto) {
 
-                // Show thank you message element
-                document.getElementById('thank_you').style.display = 'block';
-            });
-
+            // Si el registro fue exitoso, cierra el modal
+            document.getElementById('regi').style.display = 'none';
+            } else {
+                // Si el registro no fue exitoso, muestra un mensaje en el modal
+                var modalContent = document.getElementById('regi').getElementsByClassName('container')[0];
+                modalContent.innerHTML = "<h1>Registro</h1><p>El correo ya está registrado.</p>";
+                // Puedes agregar más contenido o personalizar el mensaje según tus necesidades
+            }
            
         </script>
 
@@ -254,9 +258,10 @@
     </body>
   
     <?php
-        include ("scripts.php");
-        
+        include("scripts.php");
+        include("regi.php");
     ?>
+    
 
 </html> 
 

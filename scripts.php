@@ -20,19 +20,20 @@ if (mysqli_query($conn, $sqlCrearBD)) {
     echo "Error al crear la base de datos: " . mysqli_error($conn);
 }
 
-
 mysqli_close($conn);
 
-
-//Nueva conexion con la base de datos asegurarda
+// Nueva conexion con la base de datos asegurada
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-//Creacion tablas en la base de datos
-//Seleccionamos la BD
+//Verificamos de nuevo la conexion
+if (!$conn) {
+    die("La conexión falló: " . mysqli_connect_error());
+}
 
+// Creacion tablas en la base de datos, primero la seleccionamos
 mysqli_select_db($conn, "MuscleBoost");
 
-//Creamos las tablas
+// Creamos las tablas
 $sqlCrearTablaUsuarios = "CREATE TABLE IF NOT EXISTS Usuarios (
     nombre varchar(15) not null,
     apellidos varchar(50) not null,
@@ -62,27 +63,5 @@ if (mysqli_query($conn, $sqlCrearTablaCompras)) {
 }
 
 
-//Registro de usuario
 
-print("Datos del usuario registrado");
-$nombre = $_POST['nombre'];
-$apellido = $_POST['ape'];
-$correo = $_POST['correo'];
-$contrasena = $_POST['contra'];
-
-print("<ul>\n");
-print("<li> Nombre: $nombre");
-print("<li> Apellido: $apellido");
-print("<li> Correo: $correo");
-print("<li> Contraseña: $contrasena");
-print("</ul>\n");
-
-$sql = "INSERT INTO Usuarios (nombre, apellidos, correo, contrasena)
-VALUES ('$nombre', '$apellido', '$correo', '$contrasena')";
-
-if (mysqli_query($conn, $sql)) {
-    echo "Todo bien";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
 ?>
