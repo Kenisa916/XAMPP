@@ -29,30 +29,34 @@
                 <p>Escoja los productos que desee comprar</p>
                 <button onclick="anyadir()" class="boton">Pulse para añadir mas productos<br></button>
                 <br><br>
-                
-                <form action="" id="compra">
-                    <label for="productos">Elija un producto</label>
-                    <select id="productos" name="productos">
-                        <option value="" disabled selected></option>
-                        <option value="proteina500g">Proteina - 500g</option>
-                        <option value="proteina1kg">Proteina - 1Kg</option>
-                        <option value="shaker500">Shaker - 500ml</option>
-                        <option value="shaker700">Shaker - 700ml</option>
-                        <option value="bar1">Barrita Energética 1</option>
-                        <option value="bar2">Barrita Energética 2</option>
-                    </select>
-                    <label for="cantidad">Cantidad:</label>
-                    <input type="number" id="quantity" name="quantity" min="1">
-                    <button onclick="eliminar(this)" class="boton">Eliminar</button>
-                    <br><br>         
-                </div>       
-            </form>
+                <div class="ocultar">
+                    <form action="" id="compra">
+                        <button onclick="eliminar(this)" class="boton">Eliminar</button>
+                        <label for="productos">Elija un producto</label>
+                        <select id="productos" name="productos">
+                            <option value="" disabled selected></option>
+                            <option value="proteina500g">Proteina - 500g</option>
+                            <option value="proteina1kg">Proteina - 1Kg</option>
+                            <option value="shaker500">Shaker - 500ml</option>
+                            <option value="shaker700">Shaker - 700ml</option>
+                            <option value="bar1">Barrita Energética 1</option>
+                            <option value="bar2">Barrita Energética 2</option>
+                        </select>
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" oninput="calcular()">
+                        <p>Precio: <span id="precio"></span>&euro;</p>
+                        <br><br>
+                    </form>    
+                </div>             
+            </div>       
+            
             
             
         
             <div class="precio">
 
-
+                <hr class="dotted">
+                <p>Total <span id="total"></span>&euro;</p>
 
 
                 <input type="submit" form="compra" value="Comprar" class="boton"/>
@@ -84,7 +88,19 @@
                 var form = button.closest("form");
                 form.parentNode.removeChild(form);
             }
+            
+            //Precio de los productos
+            
+            var output = document.getElementById("precio")
 
+            function calcular(productos){
+                var cantidad = document.getElementById('cantidad').value;
+
+                var precioTot = cantidad * 29.99;
+                document.getElementById('precioTotal').innerText = '$' + precioTotal.toFixed(2);
+
+
+            }
         </script> 
 
 

@@ -237,11 +237,23 @@ img {
     display: inline-block;
 }
 
+/*Estilos extra del carrito */
+
+.ocultar{
+    display: none;
+}
 
 .precio{
     border-style: solid;
     position: fixed;
-    right: 0px;
-    top: 20px;
-    width: 10%;
+    right: 20%;
+    top: 80px;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(184, 184, 184);
+}
+
+hr .dotted{
+    border-top: 3px dotted #bbb;
+    margin: 0 2%;
 }
