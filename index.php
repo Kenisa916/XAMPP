@@ -73,6 +73,7 @@
                             
                         </div>
                     </form>
+                    
                 </div>
 
                   
@@ -238,17 +239,6 @@
                 }
             }
 
-            //Funcion para que no se cierre el formulario de registro si el correo ya esta en la BD
-            if (registroCorrecto) {
-
-            // Si el registro fue exitoso, cierra el modal
-            document.getElementById('regi').style.display = 'none';
-            } else {
-                // Si el registro no fue exitoso, muestra un mensaje en el modal
-                var modalContent = document.getElementById('regi').getElementsByClassName('container')[0];
-                modalContent.innerHTML = "<h1>Registro</h1><p>El correo ya está registrado.</p>";
-                // Puedes agregar más contenido o personalizar el mensaje según tus necesidades
-            }
            
         </script>
 

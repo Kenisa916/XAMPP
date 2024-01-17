@@ -115,9 +115,12 @@ img {
 
 /*Mensaje de error en el registro*/
 .mensajeError{
-    color: red;
+    color: rgb(212, 0, 0);
     text-align: center;
     margin-top: 10px;
+    background-color: #ffbaba;
+    border: 1px solid #ff1414;
+    border-radius: 8px;
 }
 
 /* The Close Button */
@@ -253,7 +256,7 @@ img {
 .precio{
     border-style: solid;
     position: fixed;
-    right: 20%;
+    right: 3%;
     top: 80px;
     width: 200px;
     height: 200px;

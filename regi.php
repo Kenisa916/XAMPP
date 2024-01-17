@@ -31,22 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
             $registroCorrecto = true;
 
             echo "<script>
-                    document.getElementById('regi').style.display = 'none';
-                    alert('Bienvenido, $nombre');
-                  </script>";
+                alert('Bienvenido, $nombre');
+                window.location.href = 'index.php?registroCorrecto=true';
+                </script>";
 
-            // Borra los valores de las variables
-            $nombre = null;
-            $ape = null;
-            $correo = null;
-            $contra = null;
-        
+
+            
+            exit();
 
 
         } else {
             echo "Error: " . mysqli_error($conn);
         }
     }
+    unset($_POST['registro']);
 }
 
 echo "<script>var registroCorrecto = " . json_encode($registroCorrecto) . ";</script>";
