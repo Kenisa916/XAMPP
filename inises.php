@@ -1,11 +1,12 @@
 <?php
-$iniSes = false;
-
-// if para que solo se ejecute al hacer submit
+// Verificar si el formulario de inicio de sesión fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['iniciar'])) {
 
-    // Mediante el correo comprobamos que el usuario está en la tabla y obtenemos la contraseña asociada
+    // Obtener el correo y la contraseña del formulario
     $correo = $_POST['correo'];
+    $contrasena = $_POST['contra'];
+
+    // Consultar la base de datos para verificar si el correo está registrado
     $comprobarUsuario = "SELECT * FROM Usuarios WHERE correo = '$correo'";
     $resultado = mysqli_query($conn, $comprobarUsuario);
 
@@ -15,20 +16,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['iniciar'])) {
         $contraBD = $filaUsuario['contrasena'];
 
         // Comparamos la contraseña ingresada con la almacenada en la base de datos
-        if (password_verify($_POST['contra'], $contraBD)) {
-            $iniSes = true;
+        if (password_verify($contrasena, $contraBD)) {
+            //Si coinciden
 
+            // Mostrar mensaje de bienvenida
             echo "<script>
                     alert('Bienvenido de vuelta, {$filaUsuario['nombre']}');
                     window.location.href = 'index.php?iniSes=true';
                   </script>";
         } else {
+            // Mostrar mensaje de contraseña incorrecta en el modal de inicio de sesión
             echo "<script>
                     document.getElementById('ini').style.display = 'block';
                     document.getElementById('iniError').innerHTML = 'Contraseña incorrecta';
                   </script>";
         }
     } else {
+        // Mostrar mensaje de correo no registrado en el modal de inicio de sesión
         echo "<script>
                     document.getElementById('ini').style.display = 'block';
                     document.getElementById('iniError').innerHTML = 'El correo no está registrado';
@@ -37,5 +41,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['iniciar'])) {
     unset($_POST['iniciar']);
 }
 
-echo "<script>var iniSes = " . json_encode($iniSes) . ";</script>";
 ?>

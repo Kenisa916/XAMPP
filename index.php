@@ -18,7 +18,7 @@
                     <span onclick="document.getElementById('ini').style.display='none'" class="close" title="Cancelar">&times;</span>
                   
                     <!-- Modal Content -->
-                    <form class="modal-content animate" action="index.php">
+                    <form class="modal-content animate" action="index.php" method="post">
                   
                         <div class="container">
                         
@@ -242,16 +242,16 @@
            
         </script>
 
-
+        <?php
+            include("scripts.php");
+            include("regi.php");
+            include("inises.php")
+        ?>
 
 
     </body>
   
-    <?php
-        include("scripts.php");
-        include("regi.php");
-        include("inises.php")
-    ?>
+    
     
 
 </html> 

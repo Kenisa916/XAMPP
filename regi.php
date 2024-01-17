@@ -1,5 +1,4 @@
 <?php
-$registroCorrecto = false;
 
 // if para que solo se ejecute al hacer submit
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
@@ -28,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
         
         if (mysqli_query($conn, $insertarUsu)) {
             
-            $registroCorrecto = true;
 
             echo "<script>
                 alert('Bienvenido, $nombre');
@@ -47,6 +45,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     unset($_POST['registro']);
 }
 
-echo "<script>var registroCorrecto = " . json_encode($registroCorrecto) . ";</script>";
 
 ?>
