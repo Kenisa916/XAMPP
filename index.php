@@ -18,25 +18,25 @@
                     <span onclick="document.getElementById('ini').style.display='none'" class="close" title="Cancelar">&times;</span>
                   
                     <!-- Modal Content -->
-                    <form class="modal-content animate" action="index.php" style="padding-right: 0px;">
+                    <form class="modal-content animate" action="index.php">
                   
                         <div class="container">
                         
-
-                        <h2>Iniciar Sesión</h2>
-                        <label for="correo1"><b>Correo</b></label><br> 
-                        <input type="email" placeholder="Correo" name="correo" id="correo1" required>
-                        <br><br>
-                        <label for="contra1"><b>Contraseña</b></label>
-                        <br>
-                        <input type="password" placeholder="Contraseña" name="contra" id="contra1" required>
-                        <br><br>
-                        <input type="checkbox" onclick="verContraIni()">Ver contraseña
-                        <br><br>
-                        <button type="submit">Confirmar</button>
-                      
-                        <button type="button" onclick="document.getElementById('ini').style.display='none'" class="cancelbtn">Cancelar</button>
-                      </div>
+                            <div id="iniError" class="mensajeError"></div>
+                            <h2>Iniciar Sesión</h2>
+                            <label for="correo1"><b>Correo</b></label><br> 
+                            <input type="email" placeholder="Correo" name="correo" id="correo1" required>
+                            <br><br>
+                            <label for="contra1"><b>Contraseña</b></label>
+                            <br>
+                            <input type="password" placeholder="Contraseña" name="contra" id="contra1" required>
+                            <br><br>
+                            <input type="checkbox" onclick="verContraIni()">Ver contraseña
+                            <br><br>
+                            <button type="submit" name="iniciar">Confirmar</button>
+                        
+                            <button type="button" onclick="document.getElementById('ini').style.display='none'" class="cancelbtn">Cancelar</button>
+                        </div>
                     </form>
                 </div>    
 
@@ -250,6 +250,7 @@
     <?php
         include("scripts.php");
         include("regi.php");
+        include("inises.php")
     ?>
     
 

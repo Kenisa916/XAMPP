@@ -38,7 +38,7 @@ $sqlCrearTablaUsuarios = "CREATE TABLE IF NOT EXISTS Usuarios (
     nombre varchar(15) not null,
     apellidos varchar(50) not null,
     correo varchar(100) primary key,
-    contrasena varchar(20) not null
+    contrasena varchar(255) not null
 )";
 
 if (mysqli_query($conn, $sqlCrearTablaUsuarios)) {

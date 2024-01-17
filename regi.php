@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     $nombre = $_POST['nombre'];
     $ape = $_POST['ape'];
     $correo = $_POST['correo'];
-    $contra = $_POST['contra'];
+    $contra = password_hash($_POST['contra'], PASSWORD_DEFAULT);
 
     $comprobarExiste = "SELECT correo FROM Usuarios WHERE correo = '$correo'";
     $resultado = mysqli_query($conn, $comprobarExiste);
