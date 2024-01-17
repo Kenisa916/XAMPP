@@ -95,6 +95,11 @@
                 <button class="botCat" onclick="filterSelection('nutri')">Nutrición Deportiva</button>
                 <button class="botCat" onclick="filterSelection('alim')">Alimentación</button>
                 <button class="botCat" onclick="filterSelection('acce')">Accesorios</button>
+                
+            </div>
+
+            <div class="contConsul">
+                <button class="boton" onclick="location.href='consulta.php'"><h3>¡Consulta los datos de nuestra pagina web!</h3></button>
             </div>
 
 

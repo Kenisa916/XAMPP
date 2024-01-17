@@ -21,8 +21,22 @@
         </div>
 
         <div class="contenido" id="contenido">
-            <h1>Gracias por su compra, vuelva pronto</h1>
-            <button class="boton" onclick="location.href='index.php'" type="button">Volver a la página principal</button>   
+            <h1>Estadisticas de nuestra página web:</h1>
+            <?php
+                include("scripts.php");
+
+                $consulUsu = "SELECT count(correo) as totalUsuarios FROM Usuarios";
+                $result = mysqli_query($conn, $consulUsu);
+
+                // Verifica si la consulta fue exitosa
+                if ($result) {
+                    $row = mysqli_fetch_assoc($result);
+                    $totalUsuarios = $row['totalUsuarios'];
+                    echo "Actualmente hay registrados " . $totalUsuarios . " usuarios!";
+                } else {
+                    echo "Error al ejecutar la consulta: " . mysqli_error($conn);
+                }
+            ?>
         </div>    
 
         <script>
@@ -44,4 +58,3 @@
 
     </body>
 </html> 
-

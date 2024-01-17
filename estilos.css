@@ -205,6 +205,12 @@ img {
     color: white;
 }
 
+/*Acceso a la pagina para consultar a la base de datos*/
+.contConsul{
+    position: fixed;
+    width: 18%;
+    top: 305px;
+}
 
 /*Articulos*/
 
