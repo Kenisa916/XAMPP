@@ -1,3 +1,7 @@
+<?php 
+    include("scripts.php");
+    include("inises.php");
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,6 +32,8 @@
                 <br><br>
                 <div class="ocultar">
                     <form action="compraRealizada.php" method="post" id="compra_<?php echo time(); ?>">
+                        
+
                         <button onclick="eliminar(this)" class="boton">Eliminar</button>
                         <label for="productos">Elija un producto</label>
                         <select id="productos" name="productos" onchange="calcular()">
@@ -43,6 +49,7 @@
                         <input type="number" id="cantidad" name="cantidad" min="1" oninput="calcular()">
                         <p style="display: inline-block;">Precio: <span id="precio"></span>&euro;</p>
                         <br><br>
+                        
                     </form>    
                 </div>             
             </div>       
