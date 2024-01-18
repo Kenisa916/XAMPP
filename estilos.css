@@ -113,7 +113,7 @@ img {
     overflow:auto;
 }
 
-/*Mensaje de error en el registro*/
+/*Mensaje de error en el registro y en inicio de sesion*/
 .mensajeError{
     color: rgb(212, 0, 0);
     text-align: center;
@@ -260,16 +260,15 @@ img {
 }
 
 .precio{
-    border-style: solid;
+    border-style: groove;
+    border-radius: 8px;
     position: fixed;
     right: 3%;
-    top: 80px;
-    width: 200px;
-    height: 200px;
-    background-color: rgb(184, 184, 184);
+    top: 100px;
+    width: 180px;
+    height: 110px;
+    background-color: white;
+    box-shadow: 5px 5px 5px grey;
+    text-align: center;
 }
 
-hr .dotted{
-    border-top: 3px dotted #bbb;
-    margin: 0 2%;
-}

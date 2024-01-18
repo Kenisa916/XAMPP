@@ -1,3 +1,7 @@
+<?php
+    include("inises.php");
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
