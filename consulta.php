@@ -25,14 +25,28 @@
             <?php
                 include("scripts.php");
 
+                //Consulta el numero de filas de la tabla usuarios
                 $consulUsu = "SELECT count(correo) as totalUsuarios FROM Usuarios";
-                $result = mysqli_query($conn, $consulUsu);
+                $resultUsu = mysqli_query($conn, $consulUsu);
 
                 // Verifica si la consulta fue exitosa
-                if ($result) {
-                    $row = mysqli_fetch_assoc($result);
+                if ($resultUsu) {
+                    $row = mysqli_fetch_assoc($resultUsu);
                     $totalUsuarios = $row['totalUsuarios'];
-                    echo "Actualmente hay registrados " . $totalUsuarios . " usuarios!";
+                    echo "<fieldset style='display: inline;'><legend><h3>Datos</h3></legend>Actualmente hay registrados " . $totalUsuarios . " usuario(s)!";
+                } else {
+                    echo "Error al ejecutar la consulta: " . mysqli_error($conn);
+                }
+
+                //Consulta el numero de filas de la tabla compras
+                $consulComp = "SELECT count(id_compra) as totalCompras FROM Compras";
+                $resultComp = mysqli_query($conn, $consulComp);
+
+                // Verifica si la consulta fue exitosa
+                if ($resultComp) {
+                    $row = mysqli_fetch_assoc($resultComp);
+                    $totalCompras = $row['totalCompras'];
+                    echo "<br><br>Se han realizado " . $totalCompras . " compra(s)!</fieldset>";
                 } else {
                     echo "Error al ejecutar la consulta: " . mysqli_error($conn);
                 }

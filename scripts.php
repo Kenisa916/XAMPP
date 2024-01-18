@@ -15,7 +15,7 @@ if (!$conn) {
 // Crear la base de datos
 $sqlCrearBD = "CREATE DATABASE IF NOT EXISTS MuscleBoost";
 if (mysqli_query($conn, $sqlCrearBD)) {
-    echo "Base de datos creada exitosamente";
+    echo"";
 } else {
     echo "Error al crear la base de datos: " . mysqli_error($conn);
 }
@@ -42,7 +42,7 @@ $sqlCrearTablaUsuarios = "CREATE TABLE IF NOT EXISTS Usuarios (
 )";
 
 if (mysqli_query($conn, $sqlCrearTablaUsuarios)) {
-    echo "Tabla 'Usuarios' creada exitosamente";
+    echo"";
 } else {
     echo "Error al crear la tabla: " . mysqli_error($conn);
 }
@@ -57,7 +57,7 @@ $sqlCrearTablaCompras = "CREATE TABLE IF NOT EXISTS Compras (
 )";
 
 if (mysqli_query($conn, $sqlCrearTablaCompras)) {
-    echo "Tabla 'Compras' creada exitosamente";
+    echo"";
 } else {
     echo "Error al crear la tabla: " . mysqli_error($conn);
 }
