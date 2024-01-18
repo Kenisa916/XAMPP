@@ -80,7 +80,7 @@
             </div>
 
             <div class="carro">
-                <a href="carrito.html"><img src="carrito.png" alt="Carrito"></a>
+                <a href="carrito.php"><img src="carrito.png" alt="Carrito"></a>
             </div>
 
             <div id="borderBottom"></div>

@@ -1,5 +1,41 @@
 <?php
-    include("inises.php");
+
+include("scripts.php");
+include("inises.php");
+
+// Verificar si se está realizando una compra
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Iterar sobre los formularios recibidos
+    foreach ($_POST as $key => $value) {
+        // Filtrar solo los formularios de compras
+        if (strpos($key, 'compra_') !== false) {
+            $id_compra = substr($key, 7); // Obtener el índice único del formulario
+            $producto = $_POST[$key]['productos'];
+            $cantidad = $_POST[$key]['cantidad'];
+            $precioUnitario = $_POST[$key]['precio'];
+
+            // Escapar valores para prevenir inyección SQL
+            $id_compra = mysqli_real_escape_string($conn, $id_compra);
+            $correo = mysqli_real_escape_string($conn, $correo);
+            $producto = mysqli_real_escape_string($conn, $producto);
+            $cantidad = mysqli_real_escape_string($conn, $cantidad);
+            $precioUnitario = mysqli_real_escape_string($conn, $precioUnitario);
+
+            // Realizar la inserción en la tabla Compras
+            $insertarCompra = "INSERT INTO Compras (id_compra, correo, producto, cantidad, precioTot)
+                               VALUES ('$id_compra', '$correo', '$producto', '$cantidad', '$precioUnitario')";
+
+            if (mysqli_query($conn, $insertarCompra)) {
+                echo "Compra realizada con éxito";
+            } else {
+                echo "Error al realizar la compra: " . mysqli_error($conn);
+            }
+
+            // Cerrar la conexión
+            mysqli_close($conn);
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>

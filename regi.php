@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     $comprobarExiste = "SELECT correo FROM Usuarios WHERE correo = '$correo'";
     $resultado = mysqli_query($conn, $comprobarExiste);
 
-    //Si el resultado es mayor que 0, está en la tabla y aparece un error, si no, se inserta en la tabla
+    //Si el resultado es mayor que 0, está en la tabla y aparece un error, si no, se inserta en la tabla y se muestra un mensaje de bienvenida
     if (mysqli_num_rows($resultado) > 0) {
         echo "<script>
                 document.getElementById('regi').style.display = 'block';
