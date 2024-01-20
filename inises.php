@@ -1,4 +1,16 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "MuscleBoost";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if (!$conn) {
+    die("La conexión falló: " . mysqli_connect_error());
+}
+
 // Verificar si el formulario de inicio de sesión fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['iniciar'])) {
 
@@ -41,4 +53,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['iniciar'])) {
     unset($_POST['iniciar']);
 }
 
+mysqli_close($conn);
 ?>

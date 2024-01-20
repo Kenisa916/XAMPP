@@ -1,4 +1,15 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "MuscleBoost";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if (!$conn) {
+    die("La conexión falló: " . mysqli_connect_error());
+}
 
 // if para que solo se ejecute al hacer submit
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
@@ -45,5 +56,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
     unset($_POST['registro']);
 }
 
-
+mysqli_close($conn);
 ?>

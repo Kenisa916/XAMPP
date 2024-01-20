@@ -1,7 +1,3 @@
-<?php 
-    include("scripts.php");
-    include("inises.php");
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,13 +21,12 @@
         </div>
 
         <div class="contenido" id="contenido">
-            <div>
                 <h2>Este es su carrito de la compra</h2>
                 <p>Escoja los productos que desee comprar</p>
                 <button onclick="anyadir()" class="boton">Pulse para añadir más productos<br></button>
                 <br><br>
                 <div class="ocultar">
-                    <form action="compraRealizada.php" method="post" id="compra_<?php echo time(); ?>">
+                    <form id="compra_<?php echo time(); ?>" action="compraRealizada.php" method="post" class="compra">
                         
 
                         <button onclick="eliminar(this)" class="boton">Eliminar</button>
@@ -51,23 +46,27 @@
                         <br><br>
                         
                     </form>    
-                </div>             
+            
             </div>       
             
             <div class="precio">
                 
                 <p>Total <span id="total">0.00</span>&euro;</p>
-                <input type="submit" form="compra_<?php echo time(); ?>" value="Comprar" class="boton"/>
+                <input type="submit" value="Comprar" class="boton" name="botonComprar" onclick="comprar()"/>
             </div>
         </div>    
 
         <script>
             // Añade un producto a la compra
             function anyadir() {
-                const node = document.getElementById("compra_<?php echo time(); ?>");
+                const node = document.querySelector(".compra:last-of-type");
                 const clone = node.cloneNode(true);
-                clone.id = "compra_" + new Date().getTime();
+                clone.id = "compra_" + Date.now();
                 document.getElementById("contenido").appendChild(clone);
+                // Limpia los valores clonados
+                clone.querySelector('#cantidad').value = 1;
+                clone.querySelector('#productos').selectedIndex = 0;
+                clone.querySelector('#precio').innerText = '';
             }
         
             // Elimina un producto de la compra
@@ -79,30 +78,29 @@
         
             // Calcula el precio de los productos y el precio total de la compra
             function calcular() {
-                var productos = document.querySelectorAll('form');
+                var forms = document.querySelectorAll('.compra');
                 var total = 0;
-        
-                productos.forEach(function (producto) {
-                    var cantidad = producto.querySelector('#cantidad').value;
-                    var select = producto.querySelector('#productos');
+
+                forms.forEach(function (form) {
+                    var cantidad = form.querySelector('#cantidad').value;
+                    var select = form.querySelector('#productos');
                     var precio = select.options[select.selectedIndex].getAttribute('precio');
                     var precioTotal = cantidad * precio;
                     total += precioTotal;
-                    producto.querySelector('#precio').innerText = precioTotal.toFixed(2);
+                    form.querySelector('#precio').innerText = precioTotal.toFixed(2);
                 });
-        
+
                 document.getElementById('total').innerText = total.toFixed(2);
             }
         
             // Enviar datos al servidor al realizar la compra
             function comprar() {
-                var productos = document.querySelectorAll('form');
-                productos.forEach(function (producto) {
-                    producto.submit();
+                var forms = document.querySelectorAll('.compra');
+                forms.forEach(function (form) {
+                    form.submit();
                 });
             }
         </script>
 
     </body>
 </html> 
-

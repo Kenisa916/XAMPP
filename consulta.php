@@ -23,8 +23,18 @@
         <div class="contenido" id="contenido">
             <h1>Estadisticas de nuestra página web:</h1>
             <?php
-                include("scripts.php");
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "MuscleBoost";
 
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+                // Verificar la conexión
+                if (!$conn) {
+                    die("La conexión falló: " . mysqli_connect_error());
+                }
+                
                 //Consulta el numero de filas de la tabla usuarios
                 $consulUsu = "SELECT count(correo) as totalUsuarios FROM Usuarios";
                 $resultUsu = mysqli_query($conn, $consulUsu);
@@ -50,6 +60,8 @@
                 } else {
                     echo "Error al ejecutar la consulta: " . mysqli_error($conn);
                 }
+
+                mysqli_close($conn);
             ?>
         </div>    
 

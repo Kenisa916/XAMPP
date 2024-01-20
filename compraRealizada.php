@@ -1,12 +1,4 @@
-<?php
-include("scripts.php");
-include("inises.php");
 
-// Verificar si se está realizando una compra
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-}
-?>
 
 <!DOCTYPE html>
 <html>
@@ -53,5 +45,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </script> 
 
     </body>
+
+    <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "MuscleBoost";
+
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        // Verificar la conexión
+        if (!$conn) {
+            die("La conexión falló: " . mysqli_connect_error());
+        }
+
+        // Verificar si se está realizando una compra
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            echo "hola";
+            // Iterar sobre los elementos de la compra
+            foreach ($_POST['compra'] as $compra) {
+        
+                // Verificar si las claves 'productos' y 'cantidad' existen en cada elemento de compra
+                if (isset($compra['productos'], $compra['cantidad'])) {
+        
+                    $producto = $compra['productos'];
+                    $cantidad = $compra['cantidad'];
+        
+                    // Obtener el precio del producto de tu base de datos o directamente de la opción del formulario
+                    // Aquí estoy utilizando la opción directa del formulario, pero en la práctica deberías obtenerlo de tu base de datos
+                    $precio = $compra['precio'];
+        
+                    $precioTot = $precio * $cantidad;
+        
+                    $nuevaCompra = "INSERT INTO Compras (producto, cantidad, precioTot)
+                        VALUES('$producto', $cantidad, $precioTot)";
+        
+                    if (mysqli_query($conn, $nuevaCompra)) {
+                        echo "vadebo";
+                    } else {
+                        echo "novadebo";
+                    }
+                } else {
+                    echo "Error: Datos de compra incompletos.";
+                }
+            }
+        }
+
+        mysqli_close($conn);
+    ?>
 </html> 
 

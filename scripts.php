@@ -49,11 +49,11 @@ if (mysqli_query($conn, $sqlCrearTablaUsuarios)) {
 
 $sqlCrearTablaCompras = "CREATE TABLE IF NOT EXISTS Compras (
     id_compra int(6) UNSIGNED AUTO_INCREMENT primary key,
-    correo varchar(100) not null,
+    /*correo varchar(100) not null,*/
     producto varchar(50) not null,
     cantidad int not null,
-    precioTot int not null,
-    constraint fk_compra_usuarios foreign key (correo) references Usuarios(correo)
+    precioTot double not null
+    /*constraint fk_compra_usuarios foreign key (correo) references Usuarios(correo)*/
 )";
 
 if (mysqli_query($conn, $sqlCrearTablaCompras)) {
@@ -62,6 +62,6 @@ if (mysqli_query($conn, $sqlCrearTablaCompras)) {
     echo "Error al crear la tabla: " . mysqli_error($conn);
 }
 
-
+mysqli_close($conn);
 
 ?>
