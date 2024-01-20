@@ -21,13 +21,14 @@
         </div>
 
         <div class="contenido" id="contenido">
-            <div>
                 <h2>Este es su carrito de la compra</h2>
                 <p>Escoja los productos que desee comprar</p>
                 <button onclick="anyadir()" class="boton">Pulse para añadir más productos<br></button>
                 <br><br>
                 <div class="ocultar">
-                    <form action="compraRealizada.php" method="post" id="compra">
+                    <form id="compra_<?php echo time(); ?>" action="compraRealizada.php" method="post" class="compra">
+                        
+
                         <button onclick="eliminar(this)" class="boton">Eliminar</button>
                         <label for="productos">Elija un producto</label>
                         <select id="productos" name="productos" onchange="calcular()">
@@ -43,65 +44,72 @@
                         <input type="number" id="cantidad" name="cantidad" min="1" oninput="calcular()">
                         <p style="display: inline-block;">Precio: <span id="precio"></span>&euro;</p>
                         <br><br>
+                        
                     </form>    
-                </div>             
+            
             </div>       
             
             <div class="precio">
                 
                 <p>Total <span id="total">0.00</span>&euro;</p>
-                <input type="submit" form="compra" value="Comprar" class="boton"/>
+                <input type="submit" value="Comprar" class="boton" name="botonComprar" onclick="comprar()"/>
             </div>
         </div>    
 
         <script>
-            window.onscroll = function() {myFunction()};
-            
-            var header = document.getElementById("myHeader");
-            var sticky = header.offsetTop;
-            
-            function myFunction() {
-              if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-              } else {
-                header.classList.remove("sticky");
-              }
-            }
-
-            //Añade un producto a la compra
+            // Añade un producto a la compra
             function anyadir() {
-                const node = document.getElementById("compra");
+                const node = document.querySelector(".compra:last-of-type");
                 const clone = node.cloneNode(true);
+                clone.id = "compra_" + Date.now();
                 document.getElementById("contenido").appendChild(clone);
+                // Limpia los valores clonados
+                clone.querySelector('#cantidad').value = 1;
+                clone.querySelector('#productos').selectedIndex = 0;
+                clone.querySelector('#precio').innerText = '';
             }
-            
-            //Elimina un producto de la compra
-            function eliminar(button){
+        
+            // Elimina un producto de la compra
+            function eliminar(button) {
                 var form = button.closest("form");
                 form.parentNode.removeChild(form);
-                calcular(); //Vuelve a calcular cuando elimino un producto
+                calcular(); // Vuelve a calcular cuando elimino un producto
             }
-
-
-            //Calcula el precio de los productos y el precio total de la compra
+        
+            // Calcula el precio de los productos y el precio total de la compra
             function calcular() {
-                var productos = document.querySelectorAll('form');
+                var forms = document.querySelectorAll('.compra');
                 var total = 0;
 
-                productos.forEach(function(producto) {
-                    var cantidad = producto.querySelector('#cantidad').value;
-                    var select = producto.querySelector('#productos');
+                forms.forEach(function (form) {
+                    var cantidad = form.querySelector('#cantidad').value;
+                    var select = form.querySelector('#productos');
                     var precio = select.options[select.selectedIndex].getAttribute('precio');
                     var precioTotal = cantidad * precio;
                     total += precioTotal;
-                    producto.querySelector('#precio').innerText = precioTotal.toFixed(2);
+                    form.querySelector('#precio').innerText = precioTotal.toFixed(2);
                 });
 
                 document.getElementById('total').innerText = total.toFixed(2);
             }
-            
-        </script> 
+        
+            // Enviar datos al servidor al realizar la compra
+            function comprar() {
+                var forms = document.querySelectorAll('.compra');
+                forms.forEach(function (form) {
+                    form.submit();
+                });
+            }
+        </script>
 
     </body>
 </html> 
 
+enviarCompra = function(){
+    var elementosForm = document.getElementsByTagName("form");
+
+    for (var i = 2; i < elementosForm.lenght; i++){
+        var idElemento = elementosForm[i].id
+        document.getElementById(idElemento).submit();
+    }
+}

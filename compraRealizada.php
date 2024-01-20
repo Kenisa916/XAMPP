@@ -61,34 +61,40 @@
 
         // Verificar si se está realizando una compra
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            echo "hola";
-            // Iterar sobre los elementos de la compra
-            foreach ($_POST['compra'] as $compra) {
+            // Verificar si se han enviado formularios múltiples
+            if (isset($_POST['nombre_producto'])) {
+                // Obtener datos de los formularios
+                $nombreProductos = $_POST['nombre_producto'];
+                $cantidades = $_POST['cantidad'];
+                $precios = $_POST['precio'];
         
-                // Verificar si las claves 'productos' y 'cantidad' existen en cada elemento de compra
-                if (isset($compra['productos'], $compra['cantidad'])) {
-        
-                    $producto = $compra['productos'];
-                    $cantidad = $compra['cantidad'];
-        
-                    // Obtener el precio del producto de tu base de datos o directamente de la opción del formulario
-                    // Aquí estoy utilizando la opción directa del formulario, pero en la práctica deberías obtenerlo de tu base de datos
-                    $precio = $compra['precio'];
-        
+                // Iterar sobre los formularios y procesar los datos
+                for ($i = 0; $i < count($nombreProductos); $i++) {
+                    $nombreProducto = $nombreProductos[$i];
+                    $cantidad = $cantidades[$i];
+                    $precio = $precios[$i];
                     $precioTot = $precio * $cantidad;
         
-                    $nuevaCompra = "INSERT INTO Compras (producto, cantidad, precioTot)
-                        VALUES('$producto', $cantidad, $precioTot)";
-        
-                    if (mysqli_query($conn, $nuevaCompra)) {
-                        echo "vadebo";
+                    //Insertamos los datos recibidos
+                    $insertar = "INSERT INTO compras (producto, cantidad, precioTot)
+                    VALUES('$nombreProducto', $cantidad, $precioTot)";
+
+                    if (mysqli_query($conn, $insertar)) {
                     } else {
-                        echo "novadebo";
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                     }
-                } else {
-                    echo "Error: Datos de compra incompletos.";
+
+
+
+                    
                 }
+        
+                
+            } else {
+                // No se han enviado formularios
             }
+        } else {
+            // No es una solicitud POST
         }
 
         mysqli_close($conn);
