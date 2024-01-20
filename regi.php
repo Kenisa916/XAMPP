@@ -15,7 +15,6 @@ if (!$conn) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
 
     // Añadir Usuario mediante registro comprobando si ya está en la tabla o no
-
     $nombre = $_POST['nombre'];
     $ape = $_POST['ape'];
     $correo = $_POST['correo'];
@@ -34,20 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registro'])) {
         $insertarUsu = "INSERT INTO Usuarios (nombre, apellidos, correo, contrasena)
                         VALUES ('$nombre', '$ape', '$correo', '$contra')";
 
-        
-        
         if (mysqli_query($conn, $insertarUsu)) {
             
-
             echo "<script>
                 alert('Bienvenido, $nombre');
                 window.location.href = 'index.php?registroCorrecto=true';
                 </script>";
 
-
-            
             exit();
-
 
         } else {
             echo "Error: " . mysqli_error($conn);

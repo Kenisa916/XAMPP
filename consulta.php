@@ -63,6 +63,9 @@
 
                 mysqli_close($conn);
             ?>
+            <br><br>
+            <h1>Formulario de satisfacción:</h1>
+            <p style="font-size:large;">Pulse <a href="https://forms.gle/9CWwFkztUXD2m4yN7">aquí</a> para darnos su opinión sobre la página.</p>
         </div>    
 
         <script>

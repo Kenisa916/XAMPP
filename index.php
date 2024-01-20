@@ -90,7 +90,7 @@
 
         <div class="contenido">
             <div id="contCat">
-                <h3 class="titCat">Categorias</h2>
+                <h3 class="titCat">Categorías</h2>
                 <button class="botCat active" onclick="filterSelection('todo')">Mostrar todo</button>
                 <button class="botCat" onclick="filterSelection('nutri')">Nutrición Deportiva</button>
                 <button class="botCat" onclick="filterSelection('alim')">Alimentación</button>
